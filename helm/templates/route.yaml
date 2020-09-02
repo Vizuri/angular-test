@@ -1,0 +1,18 @@
+{{- $fullName := .Chart.Name -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ $fullName }}
+  namespace: {{ .Values.env }}-{{ .Chart.Name }}
+  labels:
+    app.kubernetes.io/instance: {{ $fullName }}
+    app.kubernetes.io/name: {{ $fullName }}
+spec:
+  port:
+    targetPort: {{ $svcPort }}
+  to:
+    kind: Service
+    name: {{ $fullName }}
+    weight: 100
+  wildcardPolicy: None

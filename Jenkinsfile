@@ -2,7 +2,7 @@
 import groovy.json.JsonSlurper
 def mvnCmd = "mvn"
 def version="1.0"
-def app_name="my-sb-war"
+def app_name="angular-test"
 def quay_host="docker.io"
 def quay_org="vizuri"
 
@@ -50,7 +50,10 @@ pipeline {
     stage('Build App') {
       steps {
         script {
-        sh 'ng build --prod --base-href="/"'
+        sh '''
+          npm install -g @angular/cli 
+          ng build --prod --base-href="/"'
+       '''
       }
     }
     }
@@ -82,7 +85,7 @@ usernameVariable: 'QUAY_USERNAME', passwordVariable: 'QUAY_PASSWORD']]) {
         container("buildah") {
             sh  """
               echo '->> In Helm Package <<-'
-              helm package src/main/helm/ --version=${version} --app-version=${version} 
+              helm package helm/ --version=${version} --app-version=${version} 
               echo '->> Done Helm Package <<-'
             """
         }
