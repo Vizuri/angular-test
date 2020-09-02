@@ -5,7 +5,7 @@ def version="1.0"
 def app_name="angular-test"
 def quay_host="docker.io"
 def quay_org="vizuri"
-def ENVIRONMENT=dev
+def ENVIRONMENT="dev"
 
 def nextVersionFromGit(scope) {
     def latestVersion = sh returnStdout: true, script: 'git describe --tags "$(git rev-list --tags=*.*.* --max-count=1 2> /dev/null)" 2> /dev/null || echo 0.0.0'
