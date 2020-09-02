@@ -1,16 +1,4 @@
-FROM node:12.2.0 as builder
-
-RUN npm install
-RUN npm install -g @angular/cli
-
-RUN ng build --prod --base-href="/"
-
-COPY . .
-
-RUN ls
-
 FROM nginx:1.19.2
-
 # support running as arbitrary user which belogs to the root group
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
 # users are not allowed to listen on priviliged ports
