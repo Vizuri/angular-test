@@ -52,7 +52,7 @@ pipeline {
        container("nodejs-angular") {
         script {
         sh '''
-          ng build --prod --base-href="/"'
+          ng build --prod --base-href="/"
         '''
       }
     }
