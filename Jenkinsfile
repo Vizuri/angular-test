@@ -52,6 +52,7 @@ pipeline {
        container("nodejs-angular") {
         script {
         sh '''
+          npm install
           ng build --prod --base-href="/"
         '''
       }
