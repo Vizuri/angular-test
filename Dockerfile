@@ -1,9 +1,13 @@
-#FROM node:12.2.0 as builder
+FROM node:12.2.0 as builder
 
-#RUN npm install
-#RUN npm install -g @angular/cli
+RUN npm install
+RUN npm install -g @angular/cli
 
-#RUN ng build --prod --base-href="/"
+RUN ng build --prod --base-href="/"
+
+COPY . .
+
+RUN ls
 
 FROM nginx:1.19.2
 

@@ -29,7 +29,7 @@ def nextVersionFromGit(scope) {
 pipeline {
 
   agent {
-    label 'nodejs'
+    label 'nodejs-angular'
   }
   stages {
       stage("Checkout") {
@@ -49,12 +49,13 @@ pipeline {
 
     stage('Build App') {
       steps {
+       container("nodejs-angular") {
         script {
-        sh '''
-          npm install -g @angular/cli 
+        sh """
           ng build --prod --base-href="/"'
-       '''
+        """
       }
+    }
     }
     }
  
