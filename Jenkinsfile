@@ -29,7 +29,7 @@ def nextVersionFromGit(scope) {
 pipeline {
 
   agent {
-    label 'nodejs-angular'
+    label 'maven-buildah'
   }
   stages {
       stage("Checkout") {
